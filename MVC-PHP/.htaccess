@@ -1,0 +1,14 @@
+# For security reasons, Option followsymlinks cannot be overridden.
+#Options +FollowSymlinks
+Options +SymLinksIfOwnerMatch
+RewriteEngine On
+AddType application/x-httpd-php .xml .rss
+AddDefaultCharset utf-8 
+
+RewriteRule ^.*admin$ /system/admin/index.php [nocase,QSA,L]
+RewriteRule ^.*adminlogin$ /system/admin/login.php [nocase,QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule .* index.php [QSA,L]
